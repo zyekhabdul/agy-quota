@@ -1,0 +1,25 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Antigravity accounts & secrets
+*.key
+*.token
+*.kdbx
+accounts/
+accounts.json
+.env
+.env.*
+
+# Editor artifacts
+*.swp
+*.bak
+*~
+.DS_Store

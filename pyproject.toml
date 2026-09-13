@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agy-quota"
+version = "1.2.0"
+description = "Antigravity Multi-Account Token & Quota Bulk Checker"
+readme = "README.md"
+authors = [{ name = "Zyekh Abdul", email = "zyekhabdulqadirjailani@gmail.com" }]
+license = { text = "MIT" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Environment :: Console",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "cryptography>=3.4",
+    "rich>=10.0",
+]
+
+[project.scripts]
+agy-quota = "bin.agy_quota:main"
+agy-tokens = "bin.agy_quota:main"
