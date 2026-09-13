@@ -75,7 +75,11 @@ brew install packaging/homebrew/agy-quota.rb
 ### Option 6: Termux (Android)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/zyekhabdul/agy-quota/main/packaging/termux/build.sh | bash
+# Quick standalone install:
+curl -fsSL https://raw.githubusercontent.com/zyekhabdul/agy-quota/main/install.sh | bash
+
+# Or build native Termux package:
+bash packaging/termux/build.sh
 ```
 
 ### Option 7: Using Makefile
