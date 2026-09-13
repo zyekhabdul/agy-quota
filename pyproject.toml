@@ -8,10 +8,9 @@ version = "1.2.0"
 description = "Antigravity Multi-Account Token & Quota Bulk Checker"
 readme = "README.md"
 authors = [{ name = "Zyekh Abdul", email = "zyekhabdulqadirjailani@gmail.com" }]
-license = { text = "MIT" }
+license = "MIT"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: POSIX :: Linux",
     "Environment :: Console",
 ]
