@@ -1,0 +1,33 @@
+# Maintainer: zyekhabdul <zyekhabdulqadirjailani@gmail.com>
+pkgname=agy-quota-git
+pkgver=1.2.0.r0.gd3cdfad
+pkgrel=1
+pkgdesc="Antigravity Multi-Account Token, Quota & Tier Bulk Checker (VCS git version)"
+arch=('any')
+url="https://github.com/zyekhabdul/agy-quota"
+license=('MIT')
+depends=('python' 'python-cryptography' 'python-rich')
+makedepends=('git' 'python-setuptools' 'python-build' 'python-installer' 'python-wheel')
+provides=('agy-quota')
+conflicts=('agy-quota')
+source=('git+https://github.com/zyekhabdul/agy-quota.git')
+sha256sums=('SKIP')
+
+pkgver() {
+    cd "$srcdir/agy-quota"
+    git describe --long --tags --abbrev=7 2>/dev/null | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g' ||
+    printf "1.2.0.r%s.g%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
+}
+
+build() {
+    cd "$srcdir/agy-quota"
+    python -m build --wheel --no-isolation
+}
+
+package() {
+    cd "$srcdir/agy-quota"
+    python -m installer --destdir="$pkgdir" dist/*.whl
+    ln -sf agy-quota "$pkgdir/usr/bin/agy-tokens"
+    install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+    install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+}

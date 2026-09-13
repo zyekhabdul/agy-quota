@@ -29,26 +29,63 @@ It queries Google Cloud Code internal endpoints concurrently to provide an immed
 
 *Note: If `rich` or `cryptography` are not available, agy-quota automatically falls back to plain text formatting and standard unencrypted token storage.*
 
-## Installation
-
-### Method 1: Using Makefile
+### Option 1: Official Python Package (PyPI / pip)
 
 ```bash
-git clone git@github.com:zyekhabdul/agy-quota.git
+pip install agy-quota
+# Or install locally from built wheel:
+pip install dist/agy_quota-1.2.0-py3-none-any.whl
+```
+
+### Option 2: 1-Line Standalone Installer (Linux / macOS / Termux)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/zyekhabdul/agy-quota/main/install.sh | bash
+```
+
+### Option 3: Arch Linux (AUR & PKGBUILD)
+
+```bash
+# Using an AUR helper:
+yay -S agy-quota-git
+# or paru -S agy-quota-git
+
+# Manual PKGBUILD build:
+git clone https://github.com/zyekhabdul/agy-quota.git
+cd agy-quota/packaging/aur-git
+makepkg -si
+```
+
+### Option 4: Debian / Ubuntu (.deb)
+
+```bash
+# Build locally:
+bash packaging/debian/build-deb.sh
+sudo dpkg -i packaging/debian/agy-quota_1.2.0_all.deb
+```
+
+### Option 5: macOS / Linux Homebrew
+
+```bash
+brew install zyekhabdul/tap/agy-quota
+# Or install directly from formula:
+brew install packaging/homebrew/agy-quota.rb
+```
+
+### Option 6: Termux (Android)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/zyekhabdul/agy-quota/main/packaging/termux/build.sh | bash
+```
+
+### Option 7: Using Makefile
+
+```bash
+git clone https://github.com/zyekhabdul/agy-quota.git
 cd agy-quota
 make install
 ```
-
-*By default, installs to `~/.local/bin/agy-quota` and creates a symlink alias `agy-tokens`.*
-
-### Method 2: Manual Installation
-
-```bash
-install -d ~/.local/bin
-cp bin/agy-quota ~/.local/bin/agy-quota
-chmod +x ~/.local/bin/agy-quota
-ln -sf ~/.local/bin/agy-quota ~/.local/bin/agy-tokens
-```
+*Installs by default to `~/.local/bin/agy-quota` and creates a symlink alias `agy-tokens`.*
 
 ## Usage
 
