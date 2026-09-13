@@ -1,21 +1,19 @@
-#!/usr/bin/env bash
-# Termux installer script for agy-quota
-set -euo pipefail
+# Termux package definition for agy-quota
+TERMUX_PKG_HOMEPAGE=https://github.com/zyekhabdul/agy-quota
+TERMUX_PKG_DESCRIPTION="Antigravity Multi-Account Token, Quota & Tier Bulk Checker"
+TERMUX_PKG_LICENSE="MIT"
+TERMUX_PKG_MAINTAINER="zyekhabdul <zyekhabdulqadirjailani@gmail.com>"
+TERMUX_PKG_VERSION=1.2.0
+TERMUX_PKG_SRCURL=https://github.com/zyekhabdul/agy-quota/archive/refs/tags/v${TERMUX_PKG_VERSION}.tar.gz
+TERMUX_PKG_SHA256=SKIP
+TERMUX_PKG_DEPENDS="python, python-cryptography"
+TERMUX_PKG_PLATFORM_INDEPENDENT=true
+TERMUX_PKG_BUILD_IN_SRC=true
 
-PREFIX="${PREFIX:-/data/data/com.termux/files/usr}"
-BINDIR="$PREFIX/bin"
+termux_step_make_install() {
+    pip install . --prefix="$TERMUX_PREFIX" --no-deps
+}
 
-echo "==> Installing agy-quota for Termux in $BINDIR..."
-mkdir -p "$BINDIR"
-
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-install -m 755 "$SCRIPT_DIR/bin/agy-quota" "$BINDIR/agy-quota"
-ln -sf agy-quota "$BINDIR/agy-tokens"
-
-echo "==> Verifying Python dependencies in Termux..."
-if ! python3 -c "import rich, cryptography" >/dev/null 2>&1; then
-    echo "==> Installing cryptography and rich via pip..."
-    pip install cryptography rich
-fi
-
-echo "==> Success! Run 'agy-quota' or 'agy-tokens' to launch."
+termux_step_post_massage() {
+    ln -sf agy-quota "$TERMUX_PREFIX/bin/agy-tokens"
+}
